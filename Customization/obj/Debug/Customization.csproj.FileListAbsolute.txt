@@ -1,0 +1,13 @@
+C:\Projetos\Customizacao\Customization\Customization\bin\Debug\Customization.exe.config
+C:\Projetos\Customization\Customization\obj\Debug\Customization.Properties.Resources.resources
+C:\Projetos\Customization\Customization\obj\Debug\Customization.View.ConfigServidor.resources
+C:\Projetos\Customization\Customization\obj\Debug\Customization.csproj.GenerateResource.Cache
+C:\Projetos\Customization\Customization\bin\Debug\Customization.exe.config
+C:\Projetos\Customization\Customization\bin\Debug\Customization.exe
+C:\Projetos\Customization\Customization\bin\Debug\Customization.pdb
+C:\Projetos\Customization\Customization\bin\Debug\Npgsql.dll
+C:\Projetos\Customization\Customization\bin\Debug\Npgsql.xml
+C:\Projetos\Customization\Customization\obj\Debug\Customization.exe
+C:\Projetos\Customization\Customization\obj\Debug\Customization.pdb
+C:\Projetos\Customization\Customization\obj\Debug\Customization.csprojResolveAssemblyReference.cache
+C:\Projetos\Customization\Customization\obj\Debug\Customization.View.Principal.resources
