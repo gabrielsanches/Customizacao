@@ -50,6 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Conexao.cs" />
+    <Compile Include="Model\Customizacao.cs" />
+    <Compile Include="Model\Pessoas.cs" />
+    <Compile Include="Model\Tipo.cs" />
+    <Compile Include="Util\RicherTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Util\Utility.cs" />
     <Compile Include="Util\ValidacaoException.cs" />
     <Compile Include="View\ConfigServidor.cs">
@@ -95,7 +102,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Images\arrow.ico" />
+    <Content Include="Images\Bold.ico" />
+    <Content Include="Images\color.ico" />
+    <Content Include="Images\font.ico" />
+    <Content Include="Images\italic.ico" />
+    <Content Include="Images\paint.ico" />
+    <Content Include="Images\paintbucket.ico" />
+    <Content Include="Images\settings.ico" />
+    <Content Include="Images\underline.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

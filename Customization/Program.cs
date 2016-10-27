@@ -17,7 +17,7 @@ namespace Customization
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ConfigServidor());
+            Application.Run(new Principal());
         }
     }
 }
