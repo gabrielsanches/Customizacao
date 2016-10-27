@@ -11,3 +11,6 @@ C:\Projetos\Customization\Customization\obj\Debug\Customization.exe
 C:\Projetos\Customization\Customization\obj\Debug\Customization.pdb
 C:\Projetos\Customization\Customization\obj\Debug\Customization.csprojResolveAssemblyReference.cache
 C:\Projetos\Customization\Customization\obj\Debug\Customization.View.Principal.resources
+C:\Projetos\Customizacao\Customization\bin\Debug\Customization.exe.config
+C:\Projetos\Customizacao\Customization\obj\Debug\Customization.exe
+C:\Projetos\Customizacao\Customization\obj\Debug\Customization.pdb
