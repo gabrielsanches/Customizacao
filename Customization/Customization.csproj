@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\PessoasDAO.cs" />
+    <Compile Include="EntityDAO\PessoasEDAO.cs" />
     <Compile Include="Model\Conexao.cs" />
     <Compile Include="Model\Customizacao.cs" />
     <Compile Include="Model\Pessoas.cs" />
@@ -59,6 +61,12 @@
     </Compile>
     <Compile Include="Util\Utility.cs" />
     <Compile Include="Util\ValidacaoException.cs" />
+    <Compile Include="View\ClientePesquisa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ClientePesquisa.Designer.cs">
+      <DependentUpon>ClientePesquisa.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ConfigServidor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +96,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\ClientePesquisa.resx">
+      <DependentUpon>ClientePesquisa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ConfigServidor.resx">
       <DependentUpon>ConfigServidor.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,6 +109,7 @@
       <DependentUpon>Tipo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Customization.Model.Pessoas.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -113,10 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\arrow.ico" />
-    <Content Include="Images\Bold.ico" />
-    <Content Include="Images\color.ico" />
-    <Content Include="Images\font.ico" />
-    <Content Include="Images\italic.ico" />
     <Content Include="Images\paint.ico" />
     <Content Include="Images\paintbucket.ico" />
     <Content Include="Images\settings.ico" />

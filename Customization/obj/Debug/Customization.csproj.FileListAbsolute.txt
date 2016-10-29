@@ -23,3 +23,5 @@ C:\Projetos\Customizacao\Customization\obj\Debug\Customization.Properties.Resour
 C:\Projetos\Customizacao\Customization\obj\Debug\Customization.View.ConfigServidor.resources
 C:\Projetos\Customizacao\Customization\obj\Debug\Customization.View.Principal.resources
 C:\Projetos\Customizacao\Customization\obj\Debug\Customization.csproj.GenerateResource.Cache
+C:\Projetos\Customizacao\Customization\obj\Debug\Customization.View.ClientePesquisa.resources
+C:\Projetos\Customizacao\Customization\obj\Debug\Customization.View.Tipo.resources

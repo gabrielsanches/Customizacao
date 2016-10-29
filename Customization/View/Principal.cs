@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Customization.Model;
+using Customization.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +14,22 @@ namespace Customization.View
 {
     public partial class Principal : Form
     {
+        public Customizacao customizacao = null;
+
         public Principal()
         {
+            customizacao = new Customizacao();
             InitializeComponent();
+        }
+
+        private void Principal_Load(object sender, EventArgs e)
+        {
+            Utility.getConexao();
         }
 
         public void Salvar()
         {
-
+            //Implementar Salvar
         }
         public void Exit()
         {
@@ -223,14 +233,6 @@ namespace Customization.View
             }
         }
 
-        private void richTextBox_TextChanged(object sender, EventArgs e)
-        {/*
-            richTextBox.Curre
-            //int line = 1 + richTextBox.GetLineFromCharIndex(richTextBox.GetFirstCharIndexOfCurrentLine());
-            int column = 1 + richTextBox.SelectionStart - richTextBox.GetFirstCharIndexOfCurrentLine();
-            toolStripStatusLabel1.Text = "Linha: " + line.ToString() + ", Coluna: " + column.ToString();*/
-        }
-
         private void richTextBox_CursorPositionChanged(object sender, EventArgs e)
         {
             int line = richTextBox.CurrentLine;
@@ -251,6 +253,13 @@ namespace Customization.View
             toolStripStatusLabel2.Text = "             Start " + start + ", End " + end +
                              ", Length " + length;
             
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            ClientePesquisa clientePesquisa = new ClientePesquisa(this);
+            clientePesquisa.ShowDialog();
+            tbCliente.Text = customizacao.fk_cliente;
         }
     }
 }

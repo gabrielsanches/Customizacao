@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="ip" Type="System.String" Scope="User">
-      <Value Profile="(Default)">localhost</Value>
+      <Value Profile="(Default)">10.1.0.28</Value>
     </Setting>
     <Setting Name="database" Type="System.String" Scope="User">
-      <Value Profile="(Default)">seta</Value>
+      <Value Profile="(Default)">custom</Value>
     </Setting>
     <Setting Name="port" Type="System.String" Scope="User">
       <Value Profile="(Default)">5432</Value>

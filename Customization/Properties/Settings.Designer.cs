@@ -25,7 +25,7 @@ namespace Customization.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10.1.0.28")]
         public string ip {
             get {
                 return ((string)(this["ip"]));
@@ -37,7 +37,7 @@ namespace Customization.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("seta")]
+        [global::System.Configuration.DefaultSettingValueAttribute("custom")]
         public string database {
             get {
                 return ((string)(this["database"]));

@@ -37,9 +37,14 @@
             this.tbExcluir = new System.Windows.Forms.ToolStripButton();
             this.tbFechar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.tbCliente = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
+            this.tbTipo = new System.Windows.Forms.ToolStripTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -48,6 +53,7 @@
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.richTextBox = new Customization.Util.RicherTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,8 +83,6 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.richTextBox = new Customization.Util.RicherTextBox();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -99,10 +103,14 @@
             this.tbClonar,
             this.tbExcluir,
             this.tbFechar,
-            this.toolStripSeparator1});
+            this.toolStripSeparator1,
+            this.toolStripButton7,
+            this.tbCliente,
+            this.toolStripButton8,
+            this.tbTipo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(94, 469);
+            this.toolStrip1.Size = new System.Drawing.Size(154, 469);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -112,7 +120,7 @@
             this.tbNovo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tbNovo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbNovo.Name = "tbNovo";
-            this.tbNovo.Size = new System.Drawing.Size(92, 20);
+            this.tbNovo.Size = new System.Drawing.Size(152, 20);
             this.tbNovo.Text = "Novo";
             this.tbNovo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -122,7 +130,7 @@
             this.tbSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tbSalvar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbSalvar.Name = "tbSalvar";
-            this.tbSalvar.Size = new System.Drawing.Size(92, 20);
+            this.tbSalvar.Size = new System.Drawing.Size(152, 20);
             this.tbSalvar.Text = "Salvar";
             this.tbSalvar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -132,7 +140,7 @@
             this.tbLocalizar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tbLocalizar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbLocalizar.Name = "tbLocalizar";
-            this.tbLocalizar.Size = new System.Drawing.Size(92, 20);
+            this.tbLocalizar.Size = new System.Drawing.Size(152, 20);
             this.tbLocalizar.Text = "Localizar";
             this.tbLocalizar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -142,7 +150,7 @@
             this.tbClonar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tbClonar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbClonar.Name = "tbClonar";
-            this.tbClonar.Size = new System.Drawing.Size(92, 20);
+            this.tbClonar.Size = new System.Drawing.Size(152, 20);
             this.tbClonar.Text = "Clonar";
             this.tbClonar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -152,7 +160,7 @@
             this.tbExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tbExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbExcluir.Name = "tbExcluir";
-            this.tbExcluir.Size = new System.Drawing.Size(92, 20);
+            this.tbExcluir.Size = new System.Drawing.Size(152, 20);
             this.tbExcluir.Text = "Excluir";
             this.tbExcluir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -162,7 +170,7 @@
             this.tbFechar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tbFechar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbFechar.Name = "tbFechar";
-            this.tbFechar.Size = new System.Drawing.Size(92, 20);
+            this.tbFechar.Size = new System.Drawing.Size(152, 20);
             this.tbFechar.Text = "Fechar";
             this.tbFechar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tbFechar.Click += new System.EventHandler(this.toolStripButton1_Click);
@@ -170,7 +178,43 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(92, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(152, 6);
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(152, 20);
+            this.toolStripButton7.Text = "Cliente";
+            this.toolStripButton7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
+            // 
+            // tbCliente
+            // 
+            this.tbCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbCliente.Name = "tbCliente";
+            this.tbCliente.ReadOnly = true;
+            this.tbCliente.Size = new System.Drawing.Size(150, 23);
+            // 
+            // toolStripButton8
+            // 
+            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
+            this.toolStripButton8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.Size = new System.Drawing.Size(152, 20);
+            this.toolStripButton8.Text = "Tipo";
+            this.toolStripButton8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripButton8.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            // 
+            // tbTipo
+            // 
+            this.tbTipo.Name = "tbTipo";
+            this.tbTipo.ReadOnly = true;
+            this.tbTipo.Size = new System.Drawing.Size(150, 23);
             // 
             // panel1
             // 
@@ -179,9 +223,9 @@
             this.panel1.Controls.Add(this.richTextBox);
             this.panel1.Controls.Add(this.menuStrip1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(94, 0);
+            this.panel1.Location = new System.Drawing.Point(154, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(669, 469);
+            this.panel1.Size = new System.Drawing.Size(609, 469);
             this.panel1.TabIndex = 3;
             // 
             // statusStrip1
@@ -191,7 +235,7 @@
             this.toolStripStatusLabel2});
             this.statusStrip1.Location = new System.Drawing.Point(0, 447);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(669, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(609, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -199,6 +243,11 @@
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
             // 
             // flowLayoutPanel1
             // 
@@ -285,6 +334,22 @@
             this.toolStripButton6.Text = "toolStripButton6";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
+            // richTextBox
+            // 
+            this.richTextBox.AcceptsTab = true;
+            this.richTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox.EnableAutoDragDrop = true;
+            this.richTextBox.Location = new System.Drawing.Point(0, 24);
+            this.richTextBox.MaxLength = 0;
+            this.richTextBox.Name = "richTextBox";
+            this.richTextBox.Size = new System.Drawing.Size(609, 445);
+            this.richTextBox.TabIndex = 0;
+            this.richTextBox.TabStop = false;
+            this.richTextBox.Text = "";
+            this.richTextBox.CursorPositionChanged += new System.EventHandler(this.richTextBox_CursorPositionChanged);
+            this.richTextBox.SelectionChanged += new System.EventHandler(this.richTextBox_SelectionChanged);
+            this.richTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox_KeyDown);
+            // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.MenuBar;
@@ -295,7 +360,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(669, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(609, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -528,28 +593,6 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
-            // richTextBox
-            // 
-            this.richTextBox.AcceptsTab = true;
-            this.richTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox.EnableAutoDragDrop = true;
-            this.richTextBox.Location = new System.Drawing.Point(0, 24);
-            this.richTextBox.MaxLength = 0;
-            this.richTextBox.Name = "richTextBox";
-            this.richTextBox.Size = new System.Drawing.Size(669, 445);
-            this.richTextBox.TabIndex = 0;
-            this.richTextBox.TabStop = false;
-            this.richTextBox.Text = "";
-            this.richTextBox.CursorPositionChanged += new System.EventHandler(this.richTextBox_CursorPositionChanged);
-            this.richTextBox.SelectionChanged += new System.EventHandler(this.richTextBox_SelectionChanged);
-            this.richTextBox.TextChanged += new System.EventHandler(this.richTextBox_TextChanged);
-            this.richTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox_KeyDown);
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
-            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -565,6 +608,7 @@
             this.Name = "Principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customização";
+            this.Load += new System.EventHandler(this.Principal_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -633,5 +677,9 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private Util.RicherTextBox richTextBox;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private System.Windows.Forms.ToolStripTextBox tbCliente;
+        private System.Windows.Forms.ToolStripButton toolStripButton8;
+        private System.Windows.Forms.ToolStripTextBox tbTipo;
     }
 }
