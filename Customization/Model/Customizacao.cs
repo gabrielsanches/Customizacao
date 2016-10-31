@@ -10,18 +10,18 @@ namespace Customization.Model
     {
         public int id { get; set; }
 
-        public string fk_programador { get; set; }
+        public Pessoa programador { get; set; }
 
-        public string fk_cliente { get; set; }
+        public Pessoa cliente { get; set; }
 
-        public int fk_tipo{get;set;}
+        public Tipo tipo{get;set;}
 
         public string query { get; set; }
 
-        public DateTime inicio { get; set; }
+        public string inicio { get; set; }
 
-        public DateTime fim { get; set; }
+        public string fim { get; set; }
 
-        public DateTime entrega { get; set; }
+        public string entrega { get; set; }
     }
 }

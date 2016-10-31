@@ -71,21 +71,25 @@ namespace Customization.Util {
             }
         }
 
-        //Recupera uma list de pessoas de um datable.
-        public static List<Pessoas> DataTableToPessoa(DataTable dataTable)
+        //Recupera uma list de pessoas de um dataTable.
+        public static List<Pessoa> DataTableToPessoa(DataTable dataTable)
         {
-            List<Pessoas> pessoas = new List<Pessoas>();
+            List<Pessoa> pessoas = new List<Pessoa>();
             // For each row, print the values of each column.
             foreach (DataRow row in dataTable.Rows)
             {
-                Pessoas pessoa = new Pessoas(Convert.ToString(row["codigo"]), Convert.ToString(row["nome"]),
-                    Convert.ToString(row["apelido"]), Convert.ToString(row["cpfcnpj"]));
+                Pessoa pessoa = new Pessoa(Convert.ToString(row["codigo"]), Convert.ToString(row["nome"]),
+                    Convert.ToString(row["apelido"]), Convert.ToString(row["cpfcnpj"]), Convert.ToString(row["conexao"]),
+                    Convert.ToString(row["usuario"]), Convert.ToString(row["senha"]), Convert.ToString(row["cadastro"]),
+                    Convert.ToString(row["atualizado"]), Convert.ToString(row["telefone1"]), Convert.ToString(row["telefone2"]),
+                    Convert.ToString(row["email"]));
                 pessoas.Add(pessoa);
             }
             return pessoas;
         }
 
-        public static DataTable PessoaToDataTable(List<Pessoas> pessoas)
+        //Recupera um dataTable de pessoas de uma list de pessoas.
+        public static DataTable PessoaToDataTable(List<Pessoa> pessoas)
         {
             DataTable dataTable = new DataTable();
 
@@ -93,13 +97,50 @@ namespace Customization.Util {
             dataTable.Columns.Add("apelido", typeof(string));
             dataTable.Columns.Add("cpfCnpj", typeof(string));
             dataTable.Columns.Add("codigo", typeof(string));
-            
-            foreach (Pessoas pessoa in pessoas)
+            dataTable.Columns.Add("conexao", typeof(string));
+            dataTable.Columns.Add("usuario", typeof(string));
+            dataTable.Columns.Add("senha", typeof(string));
+            dataTable.Columns.Add("cadastro", typeof(string));
+            dataTable.Columns.Add("atualizado", typeof(string));
+            dataTable.Columns.Add("telefone1", typeof(string));
+            dataTable.Columns.Add("telefone2", typeof(string));
+            dataTable.Columns.Add("email", typeof(string));
+
+            foreach (Pessoa pessoa in pessoas)
             {
-                dataTable.Rows.Add(pessoa.razaoSocial,pessoa.apelido,pessoa.cpfCnpj,pessoa.codigo);
+                dataTable.Rows.Add(pessoa.razaoSocial,pessoa.apelido,pessoa.cpfCnpj,pessoa.codigo,
+                                    pessoa.conexao, pessoa.usuario, pessoa.senha, pessoa.cadastro,
+                                    pessoa.atualizado, pessoa.telefone1, pessoa.telefone2, pessoa.email);
             }
             return dataTable;
         }
 
+        //Recupera uma list de tipos de um dataTable.
+        public static List<Tipo> DataTableToTipo(DataTable dataTable)
+        {
+            List<Tipo> tipos = new List<Tipo>();
+            // For each row, print the values of each column.
+            foreach (DataRow row in dataTable.Rows)
+            {
+                Tipo tipo = new Tipo(Convert.ToInt32(row["idtipo"]), Convert.ToString(row["descricao"]));
+                tipos.Add(tipo);
+            }
+            return tipos;
+        }
+
+        //Recupera um dataTable de pessoas de uma list de pessoas.
+        public static DataTable TipoToDataTable(List<Tipo> tipos)
+        {
+            DataTable dataTable = new DataTable();
+
+            dataTable.Columns.Add("idtipo", typeof(int));
+            dataTable.Columns.Add("descricao", typeof(string));
+
+            foreach (Tipo tipo in tipos)
+            {
+                dataTable.Rows.Add(tipo.codigo, tipo.descricao);
+            }
+            return dataTable;
+        }
     }
 }

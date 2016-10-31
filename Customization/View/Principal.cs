@@ -15,15 +15,18 @@ namespace Customization.View
     public partial class Principal : Form
     {
         public Customizacao customizacao = null;
+        public Conexao conexao = null;
 
         public Principal()
         {
             customizacao = new Customizacao();
+            conexao = new Conexao();
             InitializeComponent();
         }
 
         private void Principal_Load(object sender, EventArgs e)
         {
+            ExitRichText();
             Utility.getConexao();
         }
 
@@ -31,12 +34,13 @@ namespace Customization.View
         {
             //Implementar Salvar
         }
-        public void Exit()
+        public void ExitRichText()
         {
             richTextBox.Clear();
             richTextBox.Visible = false;
             menuStrip1.Visible = false;
             toolStrip2.Visible = false;
+            statusStrip1.Visible = false;
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -78,7 +82,7 @@ namespace Customization.View
             {
                 return;
             }
-            Exit();
+            ExitRichText();
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -123,7 +127,7 @@ namespace Customization.View
         private void saveExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Salvar();
-            Exit();
+            ExitRichText();
         }
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -255,11 +259,97 @@ namespace Customization.View
             
         }
 
-        private void toolStripButton7_Click(object sender, EventArgs e)
+        private void tbCliente_Click(object sender, EventArgs e)
         {
-            ClientePesquisa clientePesquisa = new ClientePesquisa(this);
+            ClientePesquisa clientePesquisa = new ClientePesquisa(this,true);
             clientePesquisa.ShowDialog();
-            tbCliente.Text = customizacao.fk_cliente;
+            if (customizacao.cliente!=null)
+            {
+                tbCliente.Text = customizacao.cliente.apelido;
+            }
+        }
+
+        private void Principal_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Application.Exit();
+            }
+        }
+        
+        private void tbCliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode==Keys.Delete)
+            {
+                tbCliente.Text = "";
+                customizacao.cliente = null;
+            }
+        }
+
+        private void tbTipo_Click(object sender, EventArgs e)
+        {
+            TipoPesquisa tipoPesquisa = new TipoPesquisa(this);
+            tipoPesquisa.ShowDialog();
+            if (customizacao.tipo!=null)
+            {
+                tbTipo.Text = customizacao.tipo.descricao;
+            }
+            
+        }
+
+        private void tbTipo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                tbTipo.Text = "";
+                customizacao.tipo = null;
+            }
+        }
+
+        private void tbNovo_Click(object sender, EventArgs e)
+        {
+            customizacao = new Customizacao();
+            conexao = new Conexao();
+            tbCliente.Text = "";
+            tbTipo.Text = "";
+        }
+
+        private void tbTransacao_Click(object sender, EventArgs e)
+        {
+            richTextBox.Visible = true;
+            menuStrip1.Visible = true;
+            toolStrip2.Visible = true;
+            statusStrip1.Visible = true;
+        }
+
+        private void tbAmbiente_Click(object sender, EventArgs e)
+        {
+            ConfigServidor configServidor = new ConfigServidor(this);
+            configServidor.ShowDialog();
+        }
+
+        private void tbSalvar_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void tbProgramador_Click(object sender, EventArgs e)
+        {
+            ClientePesquisa clientePesquisa = new ClientePesquisa(this, false);
+            clientePesquisa.ShowDialog();
+            if (customizacao.programador != null)
+            {
+                tbProgramador.Text = customizacao.programador.apelido;
+            }
+        }
+
+        private void tbProgramador_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                tbProgramador.Text = "";
+                customizacao.programador = null;
+            }
         }
     }
 }

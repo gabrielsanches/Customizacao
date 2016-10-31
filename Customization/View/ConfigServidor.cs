@@ -14,62 +14,26 @@ namespace Customization.View
 {
     public partial class ConfigServidor : Form
     {
-        public ConfigServidor()
+        Principal principal;
+
+        public ConfigServidor(Principal principal)
         {
+            this.principal = principal;
             InitializeComponent();
         }
 
         private void ExportaDadosFrm_Load(object sender, EventArgs e)
         {
-            tbIp.Text = Properties.Settings.Default.ip;
-            tbDatabase.Text = Properties.Settings.Default.database;
-            tbPort.Text = Properties.Settings.Default.port;
-            tbUser.Text = Properties.Settings.Default.user;
-            tbPassword.Text = Properties.Settings.Default.password;
+            tbIp.Text = principal.conexao.servidor;
+            tbDatabase.Text = principal.conexao.banco;
+            tbPort.Text = principal.conexao.porta;
+            tbUser.Text = principal.conexao.usuario;
+            tbPassword.Text = principal.conexao.senha;
         }
 
         private void btNext_Click(object sender, EventArgs e)
         {
-            Settings set = Settings.Default;
-            string ip = "", database = "", port = null, user = "", password = "";
-
-            if (tbIp.Text != null && tbIp.Text != "")
-            {
-                ip = tbIp.Text;
-            }
-            if (tbDatabase.Text != null && tbDatabase.Text != "")
-            {
-                database = tbDatabase.Text;
-            }
-            if (tbPort.Text != null && tbPort.Text != "")
-            {
-                port = tbPort.Text;
-            }
-            if (tbUser.Text != null && tbUser.Text != "")
-            {
-                user = tbUser.Text;
-            }
-            if (tbPassword.Text != null && tbPassword.Text != "")
-            {
-                password = tbPassword.Text;
-            }
-            try
-            {
-                set.ip = ip;
-                set.database = database;
-                set.port = port;
-                set.user = user;
-                set.password = password;
-                Utility.getConexao();
-                Utility.ExecutaBD("select 1; select 2;");
-                set.Save();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            this.Close();
+            
         }
 
         private void btCancel_Click(object sender, EventArgs e)

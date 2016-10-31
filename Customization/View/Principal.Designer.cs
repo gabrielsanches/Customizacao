@@ -40,7 +40,12 @@
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.tbCliente = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
+            this.tbProgramador = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.tbTipo = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbAmbiente = new System.Windows.Forms.ToolStripButton();
+            this.tbTransacao = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -53,7 +58,6 @@
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.richTextBox = new Customization.Util.RicherTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,6 +87,7 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.richTextBox = new Customization.Util.RicherTextBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -107,7 +112,12 @@
             this.toolStripButton7,
             this.tbCliente,
             this.toolStripButton8,
-            this.tbTipo});
+            this.tbProgramador,
+            this.toolStripButton9,
+            this.tbTipo,
+            this.toolStripSeparator2,
+            this.tbAmbiente,
+            this.tbTransacao});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(154, 469);
@@ -123,6 +133,7 @@
             this.tbNovo.Size = new System.Drawing.Size(152, 20);
             this.tbNovo.Text = "Novo";
             this.tbNovo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbNovo.Click += new System.EventHandler(this.tbNovo_Click);
             // 
             // tbSalvar
             // 
@@ -133,6 +144,7 @@
             this.tbSalvar.Size = new System.Drawing.Size(152, 20);
             this.tbSalvar.Text = "Salvar";
             this.tbSalvar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbSalvar.Click += new System.EventHandler(this.tbSalvar_Click);
             // 
             // tbLocalizar
             // 
@@ -190,14 +202,14 @@
             this.toolStripButton7.Text = "Cliente";
             this.toolStripButton7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolStripButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
+            this.toolStripButton7.Click += new System.EventHandler(this.tbCliente_Click);
             // 
             // tbCliente
             // 
-            this.tbCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbCliente.Name = "tbCliente";
             this.tbCliente.ReadOnly = true;
             this.tbCliente.Size = new System.Drawing.Size(150, 23);
+            this.tbCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbCliente_KeyDown);
             // 
             // toolStripButton8
             // 
@@ -206,15 +218,63 @@
             this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton8.Name = "toolStripButton8";
             this.toolStripButton8.Size = new System.Drawing.Size(152, 20);
-            this.toolStripButton8.Text = "Tipo";
+            this.toolStripButton8.Text = "Programador";
             this.toolStripButton8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolStripButton8.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.toolStripButton8.Click += new System.EventHandler(this.tbProgramador_Click);
+            // 
+            // tbProgramador
+            // 
+            this.tbProgramador.Name = "tbProgramador";
+            this.tbProgramador.ReadOnly = true;
+            this.tbProgramador.Size = new System.Drawing.Size(150, 23);
+            this.tbProgramador.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbProgramador_KeyDown);
+            // 
+            // toolStripButton9
+            // 
+            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
+            this.toolStripButton9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton9.Name = "toolStripButton9";
+            this.toolStripButton9.Size = new System.Drawing.Size(152, 20);
+            this.toolStripButton9.Text = "Tipo";
+            this.toolStripButton9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripButton9.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.toolStripButton9.Click += new System.EventHandler(this.tbTipo_Click);
             // 
             // tbTipo
             // 
             this.tbTipo.Name = "tbTipo";
             this.tbTipo.ReadOnly = true;
             this.tbTipo.Size = new System.Drawing.Size(150, 23);
+            this.tbTipo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbTipo_KeyDown);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(152, 6);
+            // 
+            // tbAmbiente
+            // 
+            this.tbAmbiente.Image = ((System.Drawing.Image)(resources.GetObject("tbAmbiente.Image")));
+            this.tbAmbiente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbAmbiente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbAmbiente.Name = "tbAmbiente";
+            this.tbAmbiente.Size = new System.Drawing.Size(152, 20);
+            this.tbAmbiente.Text = "Ambiente";
+            this.tbAmbiente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbAmbiente.Click += new System.EventHandler(this.tbAmbiente_Click);
+            // 
+            // tbTransacao
+            // 
+            this.tbTransacao.Image = ((System.Drawing.Image)(resources.GetObject("tbTransacao.Image")));
+            this.tbTransacao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbTransacao.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbTransacao.Name = "tbTransacao";
+            this.tbTransacao.Size = new System.Drawing.Size(152, 20);
+            this.tbTransacao.Text = "Editor de Transações";
+            this.tbTransacao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbTransacao.Click += new System.EventHandler(this.tbTransacao_Click);
             // 
             // panel1
             // 
@@ -333,22 +393,6 @@
             this.toolStripButton6.Size = new System.Drawing.Size(23, 21);
             this.toolStripButton6.Text = "toolStripButton6";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
-            // 
-            // richTextBox
-            // 
-            this.richTextBox.AcceptsTab = true;
-            this.richTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox.EnableAutoDragDrop = true;
-            this.richTextBox.Location = new System.Drawing.Point(0, 24);
-            this.richTextBox.MaxLength = 0;
-            this.richTextBox.Name = "richTextBox";
-            this.richTextBox.Size = new System.Drawing.Size(609, 445);
-            this.richTextBox.TabIndex = 0;
-            this.richTextBox.TabStop = false;
-            this.richTextBox.Text = "";
-            this.richTextBox.CursorPositionChanged += new System.EventHandler(this.richTextBox_CursorPositionChanged);
-            this.richTextBox.SelectionChanged += new System.EventHandler(this.richTextBox_SelectionChanged);
-            this.richTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox_KeyDown);
             // 
             // menuStrip1
             // 
@@ -593,6 +637,22 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
+            // richTextBox
+            // 
+            this.richTextBox.AcceptsTab = true;
+            this.richTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox.EnableAutoDragDrop = true;
+            this.richTextBox.Location = new System.Drawing.Point(0, 24);
+            this.richTextBox.MaxLength = 0;
+            this.richTextBox.Name = "richTextBox";
+            this.richTextBox.Size = new System.Drawing.Size(609, 445);
+            this.richTextBox.TabIndex = 0;
+            this.richTextBox.TabStop = false;
+            this.richTextBox.Text = "";
+            this.richTextBox.CursorPositionChanged += new System.EventHandler(this.richTextBox_CursorPositionChanged);
+            this.richTextBox.SelectionChanged += new System.EventHandler(this.richTextBox_SelectionChanged);
+            this.richTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox_KeyDown);
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -609,6 +669,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customização";
             this.Load += new System.EventHandler(this.Principal_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Principal_KeyDown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -681,5 +742,10 @@
         private System.Windows.Forms.ToolStripTextBox tbCliente;
         private System.Windows.Forms.ToolStripButton toolStripButton8;
         private System.Windows.Forms.ToolStripTextBox tbTipo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton tbTransacao;
+        private System.Windows.Forms.ToolStripButton tbAmbiente;
+        private System.Windows.Forms.ToolStripTextBox tbProgramador;
+        private System.Windows.Forms.ToolStripButton toolStripButton9;
     }
 }

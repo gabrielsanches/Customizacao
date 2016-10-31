@@ -24,4 +24,5 @@ C:\Projetos\Customizacao\Customization\obj\Debug\Customization.View.ConfigServid
 C:\Projetos\Customizacao\Customization\obj\Debug\Customization.View.Principal.resources
 C:\Projetos\Customizacao\Customization\obj\Debug\Customization.csproj.GenerateResource.Cache
 C:\Projetos\Customizacao\Customization\obj\Debug\Customization.View.ClientePesquisa.resources
-C:\Projetos\Customizacao\Customization\obj\Debug\Customization.View.Tipo.resources
+C:\Projetos\Customizacao\Customization\obj\Debug\Customization.View.TipoPesquisa.resources
+C:\Projetos\Customizacao\Customization\obj\Debug\Customization.View.TipoCadastro.resources

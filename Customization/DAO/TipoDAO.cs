@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Customization.DAO
 {
-    public interface PessoasDAO
+    public interface TipoDAO
     {
-        void Salvar(Pessoa pessoa);
-        List<Pessoa> BuscarCodigo(string codigo);
-        List<Pessoa> BuscarRazao(string nome);
+        void Salvar(Tipo tipo);
+        List<Tipo> ListarTodos();
     }
 }
