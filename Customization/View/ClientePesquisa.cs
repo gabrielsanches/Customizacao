@@ -14,7 +14,8 @@ namespace Customization.View
 {
     public partial class ClientePesquisa : Form
     {
-        public PessoasEDAO ePessoasDAO = new PessoasEDAO();
+        public PessoaEDAO ePessoasDAO = new PessoaEDAO();
+        public ConexaoEDAO eConexaoDAO = new ConexaoEDAO();
         public DataTable dataTablePessoas = null;
         private Principal principal = null;
         bool cliente = false;
@@ -133,14 +134,27 @@ namespace Customization.View
 
         public void Exportar()
         {
+            string codigoPessoa = Convert.ToString(dgvPessoas.SelectedRows[0].Cells[0].Value);
             if (cliente) {
-                Pessoa pessoa = ePessoasDAO.BuscarCodigo(Convert.ToString(dgvPessoas.SelectedRows[0].Cells[0].Value)).First();
-                //VERIFICAR SE EXISTE A CONEXAO PRA ESSE CLIENTE NA TABELA DE CUSTOMIZACAO_CONEXAO
-                principal.conexao.porta = "5432";
-                principal.conexao.banco = "seta";
-                principal.conexao.servidor = pessoa.conexao;
-                principal.conexao.usuario = pessoa.usuario;
-                principal.conexao.senha = pessoa.senha;
+                Pessoa pessoa = ePessoasDAO.BuscarCodigo(codigoPessoa).First();
+                Conexao conexao = eConexaoDAO.Buscar(codigoPessoa);
+                //Verifica se já existe uma conexão de banco para customização no banco.
+                if (conexao!=null)
+                {
+                    principal.conexao = conexao;
+                }else
+                {
+                    principal.conexao.porta = "5432";
+                    principal.conexao.banco = "seta";
+                    principal.conexao.servidor = pessoa.conexao;
+
+                    principal.conexao.usuario = (string.IsNullOrEmpty(pessoa.usuario.Trim())) 
+                                              ? "seta" 
+                                              : pessoa.usuario;
+
+                    principal.conexao.senha = pessoa.senha;
+                    principal.conexao.cliente = pessoa.codigo;
+                }
 
                 principal.customizacao.cliente = pessoa;
             }

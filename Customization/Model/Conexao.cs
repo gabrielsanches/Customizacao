@@ -8,6 +8,21 @@ namespace Customization.Model
 {
     public class Conexao
     {
+
+        public Conexao()
+        {
+        }
+        
+        public Conexao(string cliente, string servidor, string porta, string banco, string usuario, string senha)
+        {
+            this.cliente = cliente;
+            this.servidor = servidor;
+            this.porta = porta;
+            this.banco = banco;
+            this.usuario = usuario;
+            this.senha = senha;
+        }
+
         public string cliente { get; set; }
 
         public string servidor { get; set; }

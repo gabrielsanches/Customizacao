@@ -50,9 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\ConexaoDAO.cs" />
+    <Compile Include="DAO\CustomizacaoDAO.cs" />
     <Compile Include="DAO\PessoasDAO.cs" />
     <Compile Include="DAO\TipoDAO.cs" />
-    <Compile Include="EntityDAO\PessoasEDAO.cs" />
+    <Compile Include="EntityDAO\ConexaoEDAO.cs" />
+    <Compile Include="EntityDAO\CustomizacaoEDAO.cs" />
+    <Compile Include="EntityDAO\PessoaEDAO.cs" />
     <Compile Include="EntityDAO\TipoEDAO.cs" />
     <Compile Include="Model\Conexao.cs" />
     <Compile Include="Model\Customizacao.cs" />

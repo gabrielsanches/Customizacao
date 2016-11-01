@@ -52,7 +52,7 @@
             this.btNext.TabIndex = 0;
             this.btNext.Text = "Salvar";
             this.btNext.UseVisualStyleBackColor = true;
-            this.btNext.Click += new System.EventHandler(this.btNext_Click);
+            this.btNext.Click += new System.EventHandler(this.btSalvar_Click);
             // 
             // btCancel
             // 

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Customization.EntityDAO
 {
-    public class PessoasEDAO : PessoasDAO
+    public class PessoaEDAO : PessoasDAO
     {
         private static string SQL_BUSCA_PESSOA = "SELECT codigo, nome, apelido, cpfcnpj,"+
                                                          " conexao, usuario, senha, cadastro,"+

@@ -14,8 +14,8 @@ namespace Customization.View
 {
     public partial class Principal : Form
     {
-        public Customizacao customizacao = null;
-        public Conexao conexao = null;
+        public Customizacao customizacao { get; set; }
+        public Conexao conexao { get; set; }
 
         public Principal()
         {
@@ -30,8 +30,9 @@ namespace Customization.View
             Utility.getConexao();
         }
 
-        public void Salvar()
+        public void SalvarQuery()
         {
+            customizacao.query = richTextBox.Text;
             //Implementar Salvar
         }
         public void ExitRichText()
@@ -73,10 +74,10 @@ namespace Customization.View
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Do you want to save changes?", "", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Do you want to save changes?", "", MessageBoxButtons.YesNoCancel);
             if (dialogResult == DialogResult.Yes)
             {
-                Salvar();
+                SalvarQuery();
             }
             if (dialogResult == DialogResult.Cancel)
             {
@@ -87,7 +88,7 @@ namespace Customization.View
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Salvar();
+            SalvarQuery();
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -126,7 +127,7 @@ namespace Customization.View
 
         private void saveExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Salvar();
+            SalvarQuery();
             ExitRichText();
         }
 
@@ -330,7 +331,18 @@ namespace Customization.View
 
         private void tbSalvar_Click(object sender, EventArgs e)
         {
-            
+            if (customizacao.cliente!= null && customizacao.programador!=null && customizacao.tipo!=null)
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Os campos cliente, programador e tipo devem ser preenchidos.",
+                                "Campos Obrigatórios", 
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void tbProgramador_Click(object sender, EventArgs e)

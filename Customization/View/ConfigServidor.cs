@@ -1,4 +1,6 @@
-﻿using Customization.Properties;
+﻿using Customization.EntityDAO;
+using Customization.Model;
+using Customization.Properties;
 using Customization.Util;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,7 @@ namespace Customization.View
     public partial class ConfigServidor : Form
     {
         Principal principal;
+        ConexaoEDAO eConexaoDAO = new ConexaoEDAO();
 
         public ConfigServidor(Principal principal)
         {
@@ -31,9 +34,32 @@ namespace Customization.View
             tbPassword.Text = principal.conexao.senha;
         }
 
-        private void btNext_Click(object sender, EventArgs e)
+        private void btSalvar_Click(object sender, EventArgs e)
         {
-            
+            string message = "Você gostaria de salvar os dados de conexão para esse cliente?";
+            DialogResult dialogResult = MessageBox.Show(message, "", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Salvar();
+            }
+            if (dialogResult == DialogResult.No)
+            {
+                this.Close();
+            }
+        }
+
+        private void Salvar()
+        {
+            Conexao conexao = new Conexao(principal.conexao.cliente,
+                                          tbIp.Text,
+                                          tbPort.Text,
+                                          tbDatabase.Text,
+                                          tbUser.Text,
+                                          tbPassword.Text);
+            eConexaoDAO.Salvar(conexao);
+            principal.conexao = conexao;
+            MessageBox.Show("Os dados foram salvos com sucesso.");
+            this.Close();
         }
 
         private void btCancel_Click(object sender, EventArgs e)
@@ -49,7 +75,7 @@ namespace Customization.View
             }
             if (e.KeyCode == Keys.Enter)
             {
-                btNext_Click(sender, e);
+                btSalvar_Click(sender, e);
             }
         }
     }

@@ -15,6 +15,8 @@ namespace Customization.EntityDAO
         private static string SQL_TIPO = "SELECT * " +
                                                    "FROM customizacao_tipo";
 
+        private string SQL_TIPO_INSERT = "INSERT INTO customizacao_tipo (descricao) VALUES ('";
+
         public List<Tipo> ListarTodos()
         {
             try
@@ -56,8 +58,8 @@ namespace Customization.EntityDAO
         public void Salvar(Tipo tipo)
         {
             try {
-                string SQL_TIPO_INSERT = "INSERT INTO customizacao_tipo (descricao) VALUES ('"+ tipo.descricao +"');";
-                Utility.ExecutaBD(SQL_TIPO_INSERT);
+                string sql = SQL_TIPO_INSERT+tipo.descricao +"');";
+                Utility.ExecutaBD(sql);
             }
             catch (Exception ex)
             {

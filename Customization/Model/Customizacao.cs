@@ -8,6 +8,22 @@ namespace Customization.Model
 {
     public class Customizacao
     {
+        public Customizacao(int id, Pessoa programador, Pessoa cliente, Tipo tipo, string query, string inicio, string fim, string entrega)
+        {
+            this.id = id;
+            this.programador = programador;
+            this.cliente = cliente;
+            this.tipo = tipo;
+            this.query = query;
+            this.inicio = inicio;
+            this.fim = fim;
+            this.entrega = entrega;
+        }
+
+        public Customizacao()
+        {
+        }
+
         public int id { get; set; }
 
         public Pessoa programador { get; set; }
