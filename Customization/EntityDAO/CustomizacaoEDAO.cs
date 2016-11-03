@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Customization.Model;
 using Customization.Util;
+using System.Data;
 
 namespace Customization.EntityDAO
 {
@@ -13,7 +14,7 @@ namespace Customization.EntityDAO
     {
         private string SQL_CUSTOMIZACAO_UPDATE = "UPDATE customizacao SET ";
         private string SQL_CUSTOMIZACAO_INSERT = "INSERT INTO customizacao" +
-                                                        " (programador,cliente,idtipo,query,inicio)" +
+                                                        " (programador,cliente,idtipo,query)" +
                                                         " VALUES ";
         private string SQL_CUSTOMIZACAO_SELECT = "SELECT * FROM customizacao ";
 
@@ -41,7 +42,18 @@ namespace Customization.EntityDAO
         {
             throw new NotImplementedException();
         }
+        /*
+        public DataTable ListarTodosDT()
+        {
+            string sql = SQL_CUSTOMIZACAO_SELECT + "ORDER BY idcustomizacao;";
+            return Utility.ExecutaBD_DT(sql);
+        }
 
+        public List<Customizacao> ListarTodos(DataTable dataTable)
+        {
+            return Utility.DataTableToCustom(ListarTodosDT());
+        }
+        */
         public void Salvar(Customizacao customizacao)
         {
             string sql = "";
@@ -59,7 +71,7 @@ namespace Customization.EntityDAO
                 sql += "('" + customizacao.programador.codigo.Trim() + "', ";
                 sql += "'" + customizacao.cliente.codigo.Trim() + "', ";
                 sql += "" + customizacao.tipo.codigo + ", ";
-                sql += "'" + customizacao.query + "')";
+                sql += "'" + customizacao.query.Replace("'","''") + "')";
             }
             Utility.ExecutaBD(sql);
         }

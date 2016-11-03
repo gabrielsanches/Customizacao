@@ -45,7 +45,7 @@
             this.tbTipo = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tbAmbiente = new System.Windows.Forms.ToolStripButton();
-            this.tbTransacao = new System.Windows.Forms.ToolStripButton();
+            this.tbEditorTexto = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -87,6 +87,7 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tbServer = new System.Windows.Forms.ToolStripButton();
             this.richTextBox = new Customization.Util.RicherTextBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -107,6 +108,7 @@
             this.tbLocalizar,
             this.tbClonar,
             this.tbExcluir,
+            this.tbServer,
             this.tbFechar,
             this.toolStripSeparator1,
             this.toolStripButton7,
@@ -117,7 +119,7 @@
             this.tbTipo,
             this.toolStripSeparator2,
             this.tbAmbiente,
-            this.tbTransacao});
+            this.tbEditorTexto});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(154, 469);
@@ -155,6 +157,7 @@
             this.tbLocalizar.Size = new System.Drawing.Size(152, 20);
             this.tbLocalizar.Text = "Localizar";
             this.tbLocalizar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbLocalizar.Click += new System.EventHandler(this.tbLocalizar_Click);
             // 
             // tbClonar
             // 
@@ -265,16 +268,16 @@
             this.tbAmbiente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tbAmbiente.Click += new System.EventHandler(this.tbAmbiente_Click);
             // 
-            // tbTransacao
+            // tbEditorTexto
             // 
-            this.tbTransacao.Image = ((System.Drawing.Image)(resources.GetObject("tbTransacao.Image")));
-            this.tbTransacao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tbTransacao.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbTransacao.Name = "tbTransacao";
-            this.tbTransacao.Size = new System.Drawing.Size(152, 20);
-            this.tbTransacao.Text = "Editor de Transações";
-            this.tbTransacao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tbTransacao.Click += new System.EventHandler(this.tbTransacao_Click);
+            this.tbEditorTexto.Image = ((System.Drawing.Image)(resources.GetObject("tbEditorTexto.Image")));
+            this.tbEditorTexto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbEditorTexto.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbEditorTexto.Name = "tbEditorTexto";
+            this.tbEditorTexto.Size = new System.Drawing.Size(152, 20);
+            this.tbEditorTexto.Text = "Editor de Texto";
+            this.tbEditorTexto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbEditorTexto.Click += new System.EventHandler(this.tbTransacao_Click);
             // 
             // panel1
             // 
@@ -314,7 +317,7 @@
             this.flowLayoutPanel1.Controls.Add(this.toolStrip2);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(174, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 24);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(157, 24);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // toolStrip2
@@ -637,6 +640,17 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
+            // tbServer
+            // 
+            this.tbServer.Image = ((System.Drawing.Image)(resources.GetObject("tbServer.Image")));
+            this.tbServer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbServer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbServer.Name = "tbServer";
+            this.tbServer.Size = new System.Drawing.Size(152, 20);
+            this.tbServer.Text = "Servidor Local";
+            this.tbServer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbServer.Click += new System.EventHandler(this.tbServer_Click);
+            // 
             // richTextBox
             // 
             this.richTextBox.AcceptsTab = true;
@@ -649,6 +663,7 @@
             this.richTextBox.TabIndex = 0;
             this.richTextBox.TabStop = false;
             this.richTextBox.Text = "";
+            this.richTextBox.WordWrap = false;
             this.richTextBox.CursorPositionChanged += new System.EventHandler(this.richTextBox_CursorPositionChanged);
             this.richTextBox.SelectionChanged += new System.EventHandler(this.richTextBox_SelectionChanged);
             this.richTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox_KeyDown);
@@ -743,9 +758,10 @@
         private System.Windows.Forms.ToolStripButton toolStripButton8;
         private System.Windows.Forms.ToolStripTextBox tbTipo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton tbTransacao;
+        private System.Windows.Forms.ToolStripButton tbEditorTexto;
         private System.Windows.Forms.ToolStripButton tbAmbiente;
         private System.Windows.Forms.ToolStripTextBox tbProgramador;
         private System.Windows.Forms.ToolStripButton toolStripButton9;
+        private System.Windows.Forms.ToolStripButton tbServer;
     }
 }

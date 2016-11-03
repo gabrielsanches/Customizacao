@@ -76,11 +76,23 @@
     <Compile Include="View\ConfigServidor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\ConfigServidor.Designer.cs">
+    <Compile Include="View\ConfigServidor.designer.cs">
       <DependentUpon>ConfigServidor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ConfigServidorExterno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ConfigServidorExterno.Designer.cs">
+      <DependentUpon>ConfigServidorExterno.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\CustomizacaoLocalizar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CustomizacaoLocalizar.Designer.cs">
+      <DependentUpon>CustomizacaoLocalizar.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +126,12 @@
     <EmbeddedResource Include="View\ConfigServidor.resx">
       <DependentUpon>ConfigServidor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\ConfigServidorExterno.resx">
+      <DependentUpon>ConfigServidorExterno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CustomizacaoLocalizar.resx">
+      <DependentUpon>CustomizacaoLocalizar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
@@ -124,6 +142,7 @@
       <DependentUpon>TipoPesquisa.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Customization.Model.Customizacao.datasource" />
     <None Include="Properties\DataSources\Customization.Model.Pessoas.datasource" />
     <None Include="Properties\DataSources\Customization.Model.Tipo.datasource" />
     <None Include="Properties\Settings.settings">

@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,10 +17,10 @@ namespace Customization.Util {
 
         public static PessoaEDAO ePessoaDAO = new PessoaEDAO();
         public static TipoEDAO eTipoDAO = new TipoEDAO();
-        static NpgsqlConnection conection = null;
+        public static NpgsqlConnection conection_local = null;
 
         //Monta string de conexão.
-        public static string getConnectionString()
+        public static string getConnectionStringLocal()
         {
             return "Server=" + Properties.Settings.Default.ip +
                    ";Database=" + Properties.Settings.Default.database +
@@ -29,15 +30,23 @@ namespace Customization.Util {
         }
 
         //Inicializa a conexao do banco interno
-        public static void getConexao()
+        public static void getConexaoLocal()
         {
             try {
-                string connectionString = getConnectionString();
-                conection = new NpgsqlConnection(connectionString);
-            } catch (Exception ex)
-            {
-                throw new ValidacaoException("Erro na conexão com o banco de dados, com os parâmetros de conexão.");
+                string connectionString = getConnectionStringLocal();
+                conection_local = new NpgsqlConnection(connectionString);
             }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message, "Conexão Local",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public static void ReloadConnectionLocal()
+        {
+            conection_local.Close();
+            getConexaoLocal();
         }
 
         //Replaces each character in a character expression that matches a character in a second character expression
@@ -66,11 +75,11 @@ namespace Customization.Util {
         public static void ExecutaBD(String query)
         {
             try {
-                conection.Open();
-                NpgsqlCommand cmd2 = new NpgsqlCommand(query, conection);
+                conection_local.Open();
+                NpgsqlCommand cmd2 = new NpgsqlCommand(query, conection_local);
                 cmd2.ExecuteNonQuery();
                 cmd2.Dispose();
-                conection.Close();
+                conection_local.Close();
             }catch(Exception ex)
             {
                 throw new ValidacaoException("Erro durante a execução de uma query.");
@@ -82,18 +91,47 @@ namespace Customization.Util {
         {
             try
             {
-                conection.Open();
-                NpgsqlCommand cmd2 = new NpgsqlCommand(query, conection);
+                conection_local.Open();
+                NpgsqlCommand cmd2 = new NpgsqlCommand(query, conection_local);
                 var dataReader = cmd2.ExecuteReader();
                 var dataTable = new DataTable();
                 dataTable.Load(dataReader);
-                conection.Close();
+                conection_local.Close();
                 return dataTable;
             }
             catch (Exception ex)
             {
                 throw new ValidacaoException("Erro durante a execução de uma query de select.");
             }
+        }
+
+        //Convert Data Table into a list of the type T.
+        private static List<T> ConvertDataTable<T>(DataTable dt)
+        {
+            List<T> data = new List<T>();
+            foreach (DataRow row in dt.Rows)
+            {
+                T item = GetItem<T>(row);
+                data.Add(item);
+            }
+            return data;
+        }
+        private static T GetItem<T>(DataRow dr)
+        {
+            Type temp = typeof(T);
+            T obj = Activator.CreateInstance<T>();
+
+            foreach (DataColumn column in dr.Table.Columns)
+            {
+                foreach (PropertyInfo pro in temp.GetProperties())
+                {
+                    if (pro.Name == column.ColumnName)
+                        pro.SetValue(obj, dr[column.ColumnName], null);
+                    else
+                        continue;
+                }
+            }
+            return obj;
         }
 
         //Recupera uma list de pessoas de um dataTable.
@@ -153,7 +191,7 @@ namespace Customization.Util {
             return tipos;
         }
 
-
+        
         //Recupera um dataTable de pessoas de uma list de pessoas.
         public static DataTable TipoToDataTable(List<Tipo> tipos)
         {

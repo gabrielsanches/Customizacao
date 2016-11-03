@@ -1,4 +1,5 @@
-﻿using Customization.Model;
+﻿using Customization.EntityDAO;
+using Customization.Model;
 using Customization.Util;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Customization.View
     {
         public Customizacao customizacao { get; set; }
         public Conexao conexao { get; set; }
+        private CustomizacaoEDAO eCustomizacaoDAO = new CustomizacaoEDAO();
 
         public Principal()
         {
@@ -27,14 +29,32 @@ namespace Customization.View
         private void Principal_Load(object sender, EventArgs e)
         {
             ExitRichText();
-            Utility.getConexao();
+            Utility.getConexaoLocal();
+        }
+
+        public bool SalvarCustomizacao()
+        {
+            if (customizacao.cliente != null && customizacao.programador != null && customizacao.tipo != null)
+            {
+                eCustomizacaoDAO.Salvar(customizacao);
+            }
+            else
+            {
+                MessageBox.Show("Os campos cliente, programador e tipo devem ser preenchidos.",
+                                "Campos Obrigatórios",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1);
+                return false;
+            }
+            return true;
         }
 
         public void SalvarQuery()
         {
             customizacao.query = richTextBox.Text;
-            //Implementar Salvar
         }
+
         public void ExitRichText()
         {
             richTextBox.Clear();
@@ -44,8 +64,22 @@ namespace Customization.View
             statusStrip1.Visible = false;
         }
 
+        #region Actions
+
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            DialogResult dialogResult = MessageBox.Show("Do you want to save changes?", "", MessageBoxButtons.YesNoCancel);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (!SalvarCustomizacao())
+                {
+                    return;
+                }
+            }
+            if (dialogResult == DialogResult.Cancel)
+            {
+                return;
+            }
             Application.Exit();
         }
 
@@ -317,6 +351,7 @@ namespace Customization.View
 
         private void tbTransacao_Click(object sender, EventArgs e)
         {
+            richTextBox.Text = customizacao.query;
             richTextBox.Visible = true;
             menuStrip1.Visible = true;
             toolStrip2.Visible = true;
@@ -325,24 +360,13 @@ namespace Customization.View
 
         private void tbAmbiente_Click(object sender, EventArgs e)
         {
-            ConfigServidor configServidor = new ConfigServidor(this);
+            ConfigServidorExterno configServidor = new ConfigServidorExterno(this);
             configServidor.ShowDialog();
         }
 
         private void tbSalvar_Click(object sender, EventArgs e)
         {
-            if (customizacao.cliente!= null && customizacao.programador!=null && customizacao.tipo!=null)
-            {
-
-            }
-            else
-            {
-                MessageBox.Show("Os campos cliente, programador e tipo devem ser preenchidos.",
-                                "Campos Obrigatórios", 
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Exclamation,
-                                MessageBoxDefaultButton.Button1);
-            }
+            SalvarCustomizacao();
         }
 
         private void tbProgramador_Click(object sender, EventArgs e)
@@ -363,5 +387,20 @@ namespace Customization.View
                 customizacao.programador = null;
             }
         }
+
+        private void tbServer_Click(object sender, EventArgs e)
+        {
+            ConfigServidor configServidor = new ConfigServidor();
+            configServidor.ShowDialog();
+            Utility.ReloadConnectionLocal();
+        }
+
+        private void tbLocalizar_Click(object sender, EventArgs e)
+        {
+            CustomizacaoLocalizar customizacaoLocalizar = new CustomizacaoLocalizar();
+            customizacaoLocalizar.ShowDialog();
+        }
+
+        #endregion
     }
 }

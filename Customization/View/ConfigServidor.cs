@@ -1,7 +1,4 @@
-﻿using Customization.EntityDAO;
-using Customization.Model;
-using Customization.Properties;
-using Customization.Util;
+﻿using Customization.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,49 +13,60 @@ namespace Customization.View
 {
     public partial class ConfigServidor : Form
     {
-        Principal principal;
-        ConexaoEDAO eConexaoDAO = new ConexaoEDAO();
-
-        public ConfigServidor(Principal principal)
+        public ConfigServidor()
         {
-            this.principal = principal;
             InitializeComponent();
         }
 
         private void ExportaDadosFrm_Load(object sender, EventArgs e)
         {
-            tbIp.Text = principal.conexao.servidor;
-            tbDatabase.Text = principal.conexao.banco;
-            tbPort.Text = principal.conexao.porta;
-            tbUser.Text = principal.conexao.usuario;
-            tbPassword.Text = principal.conexao.senha;
+            tbIp.Text = Properties.Settings.Default.ip;
+            tbDatabase.Text = Properties.Settings.Default.database;
+            tbPort.Text = Properties.Settings.Default.port;
+            tbUser.Text = Properties.Settings.Default.user;
+            tbPassword.Text = Properties.Settings.Default.password;
         }
 
-        private void btSalvar_Click(object sender, EventArgs e)
+        private void btNext_Click(object sender, EventArgs e)
         {
-            string message = "Você gostaria de salvar os dados de conexão para esse cliente?";
-            DialogResult dialogResult = MessageBox.Show(message, "", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                Salvar();
-            }
-            if (dialogResult == DialogResult.No)
-            {
-                this.Close();
-            }
-        }
+            Settings set = Settings.Default;
+            string ip = "", database = "", port = null, user = "", password = "";
 
-        private void Salvar()
-        {
-            Conexao conexao = new Conexao(principal.conexao.cliente,
-                                          tbIp.Text,
-                                          tbPort.Text,
-                                          tbDatabase.Text,
-                                          tbUser.Text,
-                                          tbPassword.Text);
-            eConexaoDAO.Salvar(conexao);
-            principal.conexao = conexao;
-            MessageBox.Show("Os dados foram salvos com sucesso.");
+            if (tbIp.Text != null && tbIp.Text != "")
+            {
+                ip = tbIp.Text;
+            }
+            if (tbDatabase.Text != null && tbDatabase.Text != "")
+            {
+                database = tbDatabase.Text;
+            }
+            if (tbPort.Text != null && tbPort.Text != "")
+            {
+                port = tbPort.Text;
+            }
+            if (tbUser.Text != null && tbUser.Text != "")
+            {
+                user = tbUser.Text;
+            }
+            if (tbPassword.Text != null && tbPassword.Text != "")
+            {
+                password = tbPassword.Text;
+            }
+            try
+            {
+                set.ip = ip;
+                set.database = database;
+                set.port = port;
+                set.user = user;
+                set.password = password;
+                set.Save();
+                MessageBox.Show("Os dados foram salvos com sucesso.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Não foi possível salvar os dados de conexão!");
+            }
+
             this.Close();
         }
 
@@ -75,7 +83,7 @@ namespace Customization.View
             }
             if (e.KeyCode == Keys.Enter)
             {
-                btSalvar_Click(sender, e);
+                btNext_Click(sender, e);
             }
         }
     }

@@ -31,7 +31,8 @@ namespace Customization.EntityDAO
             }
             catch (Exception ex)
             {
-                throw new ValidacaoException(ex.Message);
+                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return new List<Pessoa>();
         }
@@ -50,7 +51,8 @@ namespace Customization.EntityDAO
             }
             catch (Exception ex)
             {
-                throw new ValidacaoException(ex.Message);
+                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return new List<Pessoa>();
         }
@@ -69,7 +71,8 @@ namespace Customization.EntityDAO
             }
             catch (Exception ex)
             {
-                throw new ValidacaoException(ex.Message);
+                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return new List<Pessoa>();
         }
@@ -88,7 +91,8 @@ namespace Customization.EntityDAO
             }
             catch (Exception ex)
             {
-                throw new ValidacaoException(ex.Message);
+                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return new List<Pessoa>();
         }
@@ -106,8 +110,9 @@ namespace Customization.EntityDAO
                 }
             }
             catch (Exception ex)
-            {
-                throw new ValidacaoException(ex.Message);
+            { 
+                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return new List<Pessoa>();
         }
@@ -126,7 +131,8 @@ namespace Customization.EntityDAO
             }
             catch (Exception ex)
             {
-                throw new ValidacaoException(ex.Message);
+                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return new List<Pessoa>();
         }
@@ -145,7 +151,8 @@ namespace Customization.EntityDAO
             }
             catch (Exception ex)
             {
-                throw new ValidacaoException(ex.Message);
+                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return new List<Pessoa>();
         }
@@ -164,7 +171,8 @@ namespace Customization.EntityDAO
             }
             catch (Exception ex)
             {
-                throw new ValidacaoException(ex.Message);
+                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return new List<Pessoa>();
         }
@@ -183,7 +191,8 @@ namespace Customization.EntityDAO
             }
             catch (Exception ex)
             {
-                throw new ValidacaoException(ex.Message);
+                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return new List<Pessoa>();
         }
@@ -202,7 +211,8 @@ namespace Customization.EntityDAO
             }
             catch (Exception ex)
             {
-                throw new ValidacaoException(ex.Message);
+                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return new List<Pessoa>();
         }

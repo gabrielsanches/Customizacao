@@ -26,3 +26,5 @@ C:\Projetos\Customizacao\Customization\obj\Debug\Customization.csproj.GenerateRe
 C:\Projetos\Customizacao\Customization\obj\Debug\Customization.View.ClientePesquisa.resources
 C:\Projetos\Customizacao\Customization\obj\Debug\Customization.View.TipoPesquisa.resources
 C:\Projetos\Customizacao\Customization\obj\Debug\Customization.View.TipoCadastro.resources
+C:\Projetos\Customizacao\Customization\obj\Debug\Customization.View.ConfigServidorExterno.resources
+C:\Projetos\Customizacao\Customization\obj\Debug\Customization.View.CustomizacaoLocalizar.resources
