@@ -1,5 +1,7 @@
 ﻿using Customization.EntityDAO;
 using Customization.Model;
+using Customization.Negócio;
+using Customization.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,8 +16,8 @@ namespace Customization.View
 {
     public partial class ClientePesquisa : Form
     {
-        public PessoaEDAO ePessoasDAO = new PessoaEDAO();
-        public ConexaoEDAO eConexaoDAO = new ConexaoEDAO();
+        public PessoaNegocio pessoasNegocio = new PessoaNegocio();
+        public ConexaoNegocio conexaoNegocio = new ConexaoNegocio();
         public DataTable dataTablePessoas = null;
         private Principal principal = null;
         bool cliente = false;
@@ -30,27 +32,25 @@ namespace Customization.View
         private void ClientePesquisa_Load(object sender, EventArgs e)
         {
             cbPesquisa.SelectedIndex = 0;
-            List<Pessoa> pessoas = null;
             if (cliente) { 
                 if (principal.customizacao.cliente==null)
                 {
-                    pessoas = ePessoasDAO.ListarTodos();
+                    dataTablePessoas = pessoasNegocio.ListarTodos();
                 }else
                 {
-                    pessoas = ePessoasDAO.BuscarCodigo(principal.customizacao.cliente.codigo);
+                    dataTablePessoas = pessoasNegocio.BuscarCodigo(principal.customizacao.cliente.codigo);
                 }
             }else
             {
                 if (principal.customizacao.programador == null)
                 {
-                    pessoas = ePessoasDAO.ListarTodosProgramadores();
+                    dataTablePessoas = pessoasNegocio.ListarTodosProgramadores();
                 }
                 else
                 {
-                    pessoas = ePessoasDAO.BuscarCodigoProgramador(principal.customizacao.programador.codigo);
+                    dataTablePessoas = pessoasNegocio.BuscarCodigoProgramador(principal.customizacao.programador.codigo);
                 }
             }
-            dataTablePessoas = Util.Utility.PessoaToDataTable(pessoas);
             dgvPessoas.DataSource = dataTablePessoas;
         }
 
@@ -63,54 +63,46 @@ namespace Customization.View
         {
             if (e.KeyCode == Keys.Enter)
             {
+                dgvPessoas.Refresh();
+                int tipo = cbPesquisa.SelectedIndex;
                 if (cliente)
                 {
-                    dgvPessoas.Refresh();
-                    int tipo = cbPesquisa.SelectedIndex;
                     switch (tipo)
                     {
                         case 0:
-                            dataTablePessoas = Util.Utility.PessoaToDataTable(ePessoasDAO.BuscarRazao(tbPesquisa.Text));
-                            dgvPessoas.DataSource = dataTablePessoas;
+                            dataTablePessoas = pessoasNegocio.BuscarRazao(tbPesquisa.Text.Trim());
                             break;
                         case 1:
-                            dataTablePessoas = Util.Utility.PessoaToDataTable(ePessoasDAO.BuscarApelido(tbPesquisa.Text));
-                            dgvPessoas.DataSource = dataTablePessoas;
+                            dataTablePessoas = pessoasNegocio.BuscarApelido(tbPesquisa.Text.Trim());
                             break;
                         case 2:
-                            dataTablePessoas = Util.Utility.PessoaToDataTable(ePessoasDAO.BuscarCpfCnpj(tbPesquisa.Text));
-                            dgvPessoas.DataSource = dataTablePessoas;
+                            dataTablePessoas = pessoasNegocio.BuscarCpfCnpj(tbPesquisa.Text.Trim());
                             break;
                         case 3:
-                            dataTablePessoas = Util.Utility.PessoaToDataTable(ePessoasDAO.BuscarCodigo(tbPesquisa.Text));
-                            dgvPessoas.DataSource = dataTablePessoas;
+                            dataTablePessoas = pessoasNegocio.BuscarCodigo(tbPesquisa.Text.Trim());
                             break;
                     }
                 }
                 else
                 {
-                    dgvPessoas.Refresh();
-                    int tipo = cbPesquisa.SelectedIndex;
                     switch (tipo)
                     {
                         case 0:
-                            dataTablePessoas = Util.Utility.PessoaToDataTable(ePessoasDAO.BuscarRazaoProgramador(tbPesquisa.Text));
-                            dgvPessoas.DataSource = dataTablePessoas;
+                            dataTablePessoas = pessoasNegocio.BuscarRazaoProgramador(tbPesquisa.Text.Trim());
+
                             break;
                         case 1:
-                            dataTablePessoas = Util.Utility.PessoaToDataTable(ePessoasDAO.BuscarApelidoProgramador(tbPesquisa.Text));
-                            dgvPessoas.DataSource = dataTablePessoas;
+                            dataTablePessoas = pessoasNegocio.BuscarApelidoProgramador(tbPesquisa.Text.Trim());
                             break;
                         case 2:
-                            dataTablePessoas = Util.Utility.PessoaToDataTable(ePessoasDAO.BuscarCpfCnpjProgramador(tbPesquisa.Text));
-                            dgvPessoas.DataSource = dataTablePessoas;
+                            dataTablePessoas = pessoasNegocio.BuscarCpfCnpjProgramador(tbPesquisa.Text.Trim());
                             break;
                         case 3:
-                            dataTablePessoas = Util.Utility.PessoaToDataTable(ePessoasDAO.BuscarCodigoProgramador(tbPesquisa.Text));
-                            dgvPessoas.DataSource = dataTablePessoas;
+                            dataTablePessoas = pessoasNegocio.BuscarCodigoProgramador(tbPesquisa.Text.Trim());
                             break;
                     }
                 }
+                dgvPessoas.DataSource = dataTablePessoas;
             }
         }
 
@@ -135,9 +127,11 @@ namespace Customization.View
         public void Exportar()
         {
             string codigoPessoa = Convert.ToString(dgvPessoas.SelectedRows[0].Cells[0].Value);
+            var people = dataTablePessoas.AsEnumerable().Where(x => x.Field<string>("codigo").Equals(codigoPessoa)).First();
+            Pessoa pessoa = Utility.GetItem<Pessoa>(people);
             if (cliente) {
-                Pessoa pessoa = ePessoasDAO.BuscarCodigo(codigoPessoa).First();
-                Conexao conexao = eConexaoDAO.Buscar(codigoPessoa);
+
+                Conexao conexao = Utility.ConvertDataTable<Conexao>(conexaoNegocio.Buscar(pessoa.codigo)).First();
                 //Verifica se já existe uma conexão de banco para customização no banco.
                 if (conexao!=null)
                 {
@@ -160,7 +154,6 @@ namespace Customization.View
             }
             else
             {
-                Pessoa pessoa = ePessoasDAO.BuscarCodigoProgramador(Convert.ToString(dgvPessoas.SelectedRows[0].Cells[0].Value)).First();
                 principal.customizacao.programador=pessoa;
             }
             this.Close();

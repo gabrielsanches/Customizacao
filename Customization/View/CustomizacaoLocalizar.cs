@@ -1,5 +1,6 @@
 ﻿using Customization.EntityDAO;
 using Customization.Model;
+using Customization.Negócio;
 using Customization.Util;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,8 @@ namespace Customization.View
 {
     public partial class CustomizacaoLocalizar : Form
     {
-        private CustomizacaoEDAO eCustomizacaoDAO = new CustomizacaoEDAO();
+        private CustomizacaoNegocio customizacaoNegocio = new CustomizacaoNegocio();
+        private DataTable CustomTable = null;
         private List<Customizacao> listCustom = null;
 
         public CustomizacaoLocalizar()
@@ -30,8 +32,10 @@ namespace Customization.View
 
         private void CustomizacaoLocalizar_Load(object sender, EventArgs e)
         {
-            listCustom = eCustomizacaoDAO.
-
+            CustomTable = customizacaoNegocio.ListarTodos();
+            listCustom = Utility.DataTableToCustom(CustomTable);
+            CustomTable = Utility.ToDataTable<Customizacao>(listCustom);
+            dgvCustom.DataSource = CustomTable;
         }
     }
 }

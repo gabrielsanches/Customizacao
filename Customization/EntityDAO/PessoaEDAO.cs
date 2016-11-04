@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Customization.Model;
 using Customization.Util;
 using System.Windows.Forms;
+using System.Data;
 
 namespace Customization.EntityDAO
 {
@@ -17,204 +18,64 @@ namespace Customization.EntityDAO
                                                          " atualizado, telefone1, telefone2, email "+
                                                     "FROM vpessoascustomizacao";
 
-        public List<Pessoa> BuscarCodigo(string codigo)
+        public DataTable BuscarCodigo(string codigo)
         {
-            try
-            {
-                string sql = SQL_BUSCA_PESSOA + " WHERE cliente AND codigo='"+codigo + "' ORDER BY nome;";
-                var dataTable = Utility.ExecutaBD_DT(sql);
-                List<Pessoa> pessoas = Utility.DataTableToPessoa(dataTable);
-                if (pessoas.Count>0)
-                {
-                    return pessoas;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return new List<Pessoa>();
+            string sql = SQL_BUSCA_PESSOA + " WHERE cliente AND codigo='"+codigo + "' ORDER BY nome;";
+            return Utility.ExecutaBD_DT(sql);
         }
 
-        public List<Pessoa> BuscarRazao(string nome)
+        public DataTable BuscarRazao(string nome)
         {
-            try
-            {
-                string sql = SQL_BUSCA_PESSOA + " WHERE cliente AND nome like '" + nome + "' ORDER BY nome;";
-                var dataTable = Utility.ExecutaBD_DT(sql);
-                List<Pessoa> pessoas = Utility.DataTableToPessoa(dataTable);
-                if (pessoas.Count > 0)
-                {
-                    return pessoas;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return new List<Pessoa>();
+            string sql = SQL_BUSCA_PESSOA + " WHERE cliente AND rtrim(ltrim(nome)) like '" + nome + "' ORDER BY nome;";
+            return Utility.ExecutaBD_DT(sql);
         }
 
-        public List<Pessoa> BuscarApelido(string apelido)
+        public DataTable BuscarApelido(string apelido)
         {
-            try
-            {
-                string sql = SQL_BUSCA_PESSOA + " WHERE cliente AND apelido like '" + apelido + "' ORDER BY nome;";
-                var dataTable = Utility.ExecutaBD_DT(sql);
-                List<Pessoa> pessoas = Utility.DataTableToPessoa(dataTable);
-                if (pessoas.Count > 0)
-                {
-                    return pessoas;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return new List<Pessoa>();
+            string sql = SQL_BUSCA_PESSOA + " WHERE cliente AND rtrim(ltrim(apelido)) like '" + apelido + "' ORDER BY nome;";
+            return Utility.ExecutaBD_DT(sql);
         }
 
-        public List<Pessoa> BuscarCpfCnpj(string cpfCnpj)
+        public DataTable BuscarCpfCnpj(string cpfCnpj)
         {
-            try
-            {
-                string sql = SQL_BUSCA_PESSOA + " WHERE cliente AND cpfcnpj like '" + cpfCnpj + "' ORDER BY nome;";
-                var dataTable = Utility.ExecutaBD_DT(sql);
-                List<Pessoa> pessoas = Utility.DataTableToPessoa(dataTable);
-                if (pessoas.Count > 0)
-                {
-                    return pessoas;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return new List<Pessoa>();
+            string sql = SQL_BUSCA_PESSOA + " WHERE cliente AND rtrim(ltrim(cpfcnpj)) like '" + cpfCnpj + "' ORDER BY nome;";
+            return Utility.ExecutaBD_DT(sql);
         }
 
-        public List<Pessoa> ListarTodos()
+        public DataTable ListarTodos()
         {
-            try
-            {
-                string sql = SQL_BUSCA_PESSOA + " WHERE cliente ORDER BY nome;";
-                var dataTable = Utility.ExecutaBD_DT(sql);
-                List<Pessoa> pessoas = Utility.DataTableToPessoa(dataTable);
-                if (pessoas.Count > 0)
-                {
-                    return pessoas;
-                }
-            }
-            catch (Exception ex)
-            { 
-                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return new List<Pessoa>();
+            string sql = SQL_BUSCA_PESSOA + " WHERE cliente ORDER BY nome;";
+            return Utility.ExecutaBD_DT(sql);
         }
 
-        public List<Pessoa> BuscarCodigoProgramador(string codigo)
+        public DataTable BuscarCodigoProgramador(string codigo)
         {
-            try
-            {
-                string sql = SQL_BUSCA_PESSOA + " WHERE funcionario AND codigo='" + codigo + "' ORDER BY nome;";
-                var dataTable = Utility.ExecutaBD_DT(sql);
-                List<Pessoa> pessoas = Utility.DataTableToPessoa(dataTable);
-                if (pessoas.Count > 0)
-                {
-                    return pessoas;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return new List<Pessoa>();
+            string sql = SQL_BUSCA_PESSOA + " WHERE funcionario AND codigo='" + codigo + "' ORDER BY nome;";
+            return Utility.ExecutaBD_DT(sql);
         }
 
-        public List<Pessoa> BuscarRazaoProgramador(string nome)
+        public DataTable BuscarRazaoProgramador(string nome)
         {
-            try
-            {
-                string sql = SQL_BUSCA_PESSOA + " WHERE funcionario AND nome like '" + nome + "' ORDER BY nome;";
-                var dataTable = Utility.ExecutaBD_DT(sql);
-                List<Pessoa> pessoas = Utility.DataTableToPessoa(dataTable);
-                if (pessoas.Count > 0)
-                {
-                    return pessoas;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return new List<Pessoa>();
+            string sql = SQL_BUSCA_PESSOA + " WHERE funcionario AND rtrim(ltrim(nome)) like '" + nome + "' ORDER BY nome;";
+            return Utility.ExecutaBD_DT(sql);
         }
 
-        public List<Pessoa> BuscarApelidoProgramador(string apelido)
+        public DataTable BuscarApelidoProgramador(string apelido)
         {
-            try
-            {
-                string sql = SQL_BUSCA_PESSOA + " WHERE funcionario AND apelido like '" + apelido + "' ORDER BY nome;";
-                var dataTable = Utility.ExecutaBD_DT(sql);
-                List<Pessoa> pessoas = Utility.DataTableToPessoa(dataTable);
-                if (pessoas.Count > 0)
-                {
-                    return pessoas;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return new List<Pessoa>();
+            string sql = SQL_BUSCA_PESSOA + " WHERE funcionario AND rtrim(ltrim(apelido)) like '" + apelido + "' ORDER BY nome;";
+            return Utility.ExecutaBD_DT(sql);
+        }
+        
+        public DataTable BuscarCpfCnpjProgramador(string cpfCnpj)
+        {
+            string sql = SQL_BUSCA_PESSOA + " WHERE funcionario AND rtrim(ltrim(cpfcnpj)) like '" + cpfCnpj + "' ORDER BY nome;";
+            return Utility.ExecutaBD_DT(sql);
         }
 
-        public List<Pessoa> BuscarCpfCnpjProgramador(string cpfCnpj)
+        public DataTable ListarTodosProgramadores()
         {
-            try
-            {
-                string sql = SQL_BUSCA_PESSOA + " WHERE funcionario AND cpfcnpj like '" + cpfCnpj + "' ORDER BY nome;";
-                var dataTable = Utility.ExecutaBD_DT(sql);
-                List<Pessoa> pessoas = Utility.DataTableToPessoa(dataTable);
-                if (pessoas.Count > 0)
-                {
-                    return pessoas;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return new List<Pessoa>();
-        }
-
-        public List<Pessoa> ListarTodosProgramadores()
-        {
-            try
-            {
-                string sql = SQL_BUSCA_PESSOA + " WHERE funcionario ORDER BY nome;";
-                var dataTable = Utility.ExecutaBD_DT(sql);
-                List<Pessoa> pessoas = Utility.DataTableToPessoa(dataTable);
-                if (pessoas.Count > 0)
-                {
-                    return pessoas;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro de conexão com o servidor de dados local!", "Busca Pessoa",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return new List<Pessoa>();
+            string sql = SQL_BUSCA_PESSOA + " WHERE funcionario ORDER BY nome;";
+            return Utility.ExecutaBD_DT(sql);
         }
 
         public void Salvar(Pessoa pessoa)

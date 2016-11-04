@@ -1,5 +1,7 @@
 ﻿using Customization.EntityDAO;
 using Customization.Model;
+using Customization.Negócio;
+using Customization.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +16,7 @@ namespace Customization.View
 {
     public partial class TipoPesquisa : Form
     {
-        public TipoEDAO eTiposDAO = new TipoEDAO();
+        private TipoNegocio TipoNegocio = new TipoNegocio();
         public DataTable dataTableTipo = null;
         Principal principal;
 
@@ -26,9 +28,8 @@ namespace Customization.View
 
         public void LoadDGV()
         {
-            List<Tipo> tipos = null;
-            tipos = eTiposDAO.ListarTodos();
-            dataTableTipo = Util.Utility.TipoToDataTable(tipos);
+            dataTableTipo = TipoNegocio.ListarTodos();
+            List<Tipo> tipos = Utility.ConvertDataTable<Tipo>(dataTableTipo);
             dgvTipo.DataSource = dataTableTipo;
         }
 
@@ -69,7 +70,9 @@ namespace Customization.View
 
         public void Exportar()
         {
-            principal.customizacao.tipo = eTiposDAO.BuscarCodigo(Convert.ToInt32(dgvTipo.SelectedRows[0].Cells[0].Value)).First();
+            int codigoTipo = Convert.ToInt32(dgvTipo.SelectedRows[0].Cells[0].Value);
+            var tipo = dataTableTipo.AsEnumerable().Where(x => x.Field<int>("idtipo") == codigoTipo).First();
+            principal.customizacao.tipo = Utility.GetItem<Tipo>(tipo);
             this.Close();
         }
     }

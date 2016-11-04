@@ -1,5 +1,6 @@
 ﻿using Customization.EntityDAO;
 using Customization.Model;
+using Customization.Negócio;
 using Customization.Properties;
 using Customization.Util;
 using System;
@@ -17,7 +18,7 @@ namespace Customization.View
     public partial class ConfigServidorExterno : Form
     {
         Principal principal;
-        ConexaoEDAO eConexaoDAO = new ConexaoEDAO();
+        ConexaoNegocio conexaoNegocio = new ConexaoNegocio();
 
         public ConfigServidorExterno(Principal principal)
         {
@@ -56,9 +57,12 @@ namespace Customization.View
                                           tbDatabase.Text,
                                           tbUser.Text,
                                           tbPassword.Text);
-            eConexaoDAO.Salvar(conexao);
+
+            if (conexaoNegocio.Salvar(conexao))
+            {
+                MessageBox.Show("Os dados foram salvos com sucesso.");
+            }
             principal.conexao = conexao;
-            MessageBox.Show("Os dados foram salvos com sucesso.");
             this.Close();
         }
 

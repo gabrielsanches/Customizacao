@@ -1,8 +1,9 @@
-﻿using Customization.EntityDAO;
-using Customization.Model;
+﻿using Customization.Model;
+using Customization.Negócio;
 using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Globalization;
@@ -13,11 +14,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Customization.Util {
-    public class Utility {
-
-        public static PessoaEDAO ePessoaDAO = new PessoaEDAO();
-        public static TipoEDAO eTipoDAO = new TipoEDAO();
+    public static class Utility {
+        
         public static NpgsqlConnection conection_local = null;
+        private static TipoNegocio tipoNegocio = new TipoNegocio();
+        private static PessoaNegocio pessoaNegocio = new PessoaNegocio();
 
         //Monta string de conexão.
         public static string getConnectionStringLocal()
@@ -106,7 +107,7 @@ namespace Customization.Util {
         }
 
         //Convert Data Table into a list of the type T.
-        private static List<T> ConvertDataTable<T>(DataTable dt)
+        public static List<T> ConvertDataTable<T>(DataTable dt)
         {
             List<T> data = new List<T>();
             foreach (DataRow row in dt.Rows)
@@ -116,7 +117,7 @@ namespace Customization.Util {
             }
             return data;
         }
-        private static T GetItem<T>(DataRow dr)
+        public static T GetItem<T>(DataRow dr)
         {
             Type temp = typeof(T);
             T obj = Activator.CreateInstance<T>();
@@ -134,104 +135,37 @@ namespace Customization.Util {
             return obj;
         }
 
-        //Recupera uma list de pessoas de um dataTable.
-        public static List<Pessoa> DataTableToPessoa(DataTable dataTable)
+        public static DataTable ToDataTable<T>(this IList<T> data)
         {
-            List<Pessoa> pessoas = new List<Pessoa>();
-            // For each row, print the values of each column.
-            foreach (DataRow row in dataTable.Rows)
+            PropertyDescriptorCollection properties =
+                TypeDescriptor.GetProperties(typeof(T));
+            DataTable table = new DataTable();
+            foreach (PropertyDescriptor prop in properties)
+                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+            foreach (T item in data)
             {
-                Pessoa pessoa = new Pessoa(Convert.ToString(row["codigo"]), Convert.ToString(row["nome"]),
-                                           Convert.ToString(row["apelido"]), Convert.ToString(row["cpfcnpj"]), Convert.ToString(row["conexao"]),
-                                           Convert.ToString(row["usuario"]), Convert.ToString(row["senha"]), Convert.ToString(row["cadastro"]),
-                                           Convert.ToString(row["atualizado"]), Convert.ToString(row["telefone1"]), Convert.ToString(row["telefone2"]),
-                                           Convert.ToString(row["email"]));
-                pessoas.Add(pessoa);
+                DataRow row = table.NewRow();
+                foreach (PropertyDescriptor prop in properties)
+                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+                table.Rows.Add(row);
             }
-            return pessoas;
-        }
-
-        //Recupera um dataTable de pessoas de uma list de pessoas.
-        public static DataTable PessoaToDataTable(List<Pessoa> pessoas)
-        {
-            DataTable dataTable = new DataTable();
-
-            dataTable.Columns.Add("razaoSocial", typeof(string));
-            dataTable.Columns.Add("apelido", typeof(string));
-            dataTable.Columns.Add("cpfCnpj", typeof(string));
-            dataTable.Columns.Add("codigo", typeof(string));
-            dataTable.Columns.Add("conexao", typeof(string));
-            dataTable.Columns.Add("usuario", typeof(string));
-            dataTable.Columns.Add("senha", typeof(string));
-            dataTable.Columns.Add("cadastro", typeof(string));
-            dataTable.Columns.Add("atualizado", typeof(string));
-            dataTable.Columns.Add("telefone1", typeof(string));
-            dataTable.Columns.Add("telefone2", typeof(string));
-            dataTable.Columns.Add("email", typeof(string));
-
-            foreach (Pessoa pessoa in pessoas)
-            {
-                dataTable.Rows.Add(pessoa.razaoSocial,pessoa.apelido,pessoa.cpfCnpj,pessoa.codigo,
-                                    pessoa.conexao, pessoa.usuario, pessoa.senha, pessoa.cadastro,
-                                    pessoa.atualizado, pessoa.telefone1, pessoa.telefone2, pessoa.email);
-            }
-            return dataTable;
-        }
-
-        //Recupera uma list de tipos de um dataTable.
-        public static List<Tipo> DataTableToTipo(DataTable dataTable)
-        {
-            List<Tipo> tipos = new List<Tipo>();
-            // For each row, print the values of each column.
-            foreach (DataRow row in dataTable.Rows)
-            {
-                Tipo tipo = new Tipo(Convert.ToInt32(row["idtipo"]), Convert.ToString(row["descricao"]));
-                tipos.Add(tipo);
-            }
-            return tipos;
-        }
-
-        
-        //Recupera um dataTable de pessoas de uma list de pessoas.
-        public static DataTable TipoToDataTable(List<Tipo> tipos)
-        {
-            DataTable dataTable = new DataTable();
-
-            dataTable.Columns.Add("idtipo", typeof(int));
-            dataTable.Columns.Add("descricao", typeof(string));
-
-            foreach (Tipo tipo in tipos)
-            {
-                dataTable.Rows.Add(tipo.codigo, tipo.descricao);
-            }
-            return dataTable;
-        }
-
-        //Recupera uma list de conexoes de um dataTable.
-        public static List<Conexao> DataTableToConn(DataTable dataTable)
-        {
-            List<Conexao> conns = new List<Conexao>();
-            // For each row, print the values of each column.
-            foreach (DataRow row in dataTable.Rows)
-            {
-                Conexao conexao = new Conexao(Convert.ToString(row["cliente"]), Convert.ToString(row["servidor"]),
-                                              Convert.ToString(row["porta"]), Convert.ToString(row["banco"]),
-                                              Convert.ToString(row["usuario"]), Convert.ToString(row["senha"]));
-                conns.Add(conexao);
-            }
-            return conns;
+            return table;
         }
 
         //Recupera uma list de customizacoes de um dataTable.
         public static List<Customizacao> DataTableToCustom(DataTable dataTable)
         {
+            
             List<Customizacao> conns = new List<Customizacao>();
             // For each row, print the values of each column.
             foreach (DataRow row in dataTable.Rows)
             {
-                Pessoa programador = ePessoaDAO.BuscarCodigoProgramador(Convert.ToString(row["programador"])).First();
-                Pessoa cliente = ePessoaDAO.BuscarCodigo(Convert.ToString(row["cliente"])).First();
-                Tipo tipo = eTipoDAO.BuscarCodigo(Convert.ToInt32(row["idtipo"])).First();
+                var pessoaDT = pessoaNegocio.BuscarCodigoProgramador(Convert.ToString(row["programador"]));
+                Pessoa programador = Utility.ConvertDataTable<Pessoa>(pessoaDT).First();
+                pessoaDT = pessoaNegocio.BuscarCodigo(Convert.ToString(row["cliente"]));
+                Pessoa cliente = Utility.ConvertDataTable<Pessoa>(pessoaDT).First();
+                var tipoDT = tipoNegocio.BuscarCodigo(Convert.ToInt32(row["idtipo"]));
+                Tipo tipo = Utility.ConvertDataTable<Tipo>(tipoDT).First();
 
                 Customizacao conexao = new Customizacao(Convert.ToInt32(row["idcustomizacao"]),
                                                         programador, cliente, tipo,

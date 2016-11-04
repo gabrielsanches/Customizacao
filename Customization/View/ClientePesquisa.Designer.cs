@@ -31,20 +31,20 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientePesquisa));
             this.dgvPessoas = new System.Windows.Forms.DataGridView();
-            this.pessoasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tbPesquisa = new System.Windows.Forms.TextBox();
             this.cbPesquisa = new System.Windows.Forms.ComboBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.tbExportar = new System.Windows.Forms.ToolStripButton();
             this.tbFechar = new System.Windows.Forms.ToolStripButton();
+            this.pessoasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.codigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apelidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefone1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPessoas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pessoasBindingSource)).BeginInit();
             this.toolStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pessoasBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvPessoas
@@ -58,7 +58,7 @@
             this.dgvPessoas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPessoas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoDataGridViewTextBoxColumn,
-            this.dataGridViewTextBoxColumn1,
+            this.nome,
             this.apelidoDataGridViewTextBoxColumn,
             this.dataGridViewTextBoxColumn2,
             this.telefone1});
@@ -74,10 +74,6 @@
             this.dgvPessoas.Size = new System.Drawing.Size(783, 402);
             this.dgvPessoas.TabIndex = 0;
             this.dgvPessoas.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPessoas_CellMouseDoubleClick);
-            // 
-            // pessoasBindingSource
-            // 
-            this.pessoasBindingSource.DataSource = typeof(Customization.Model.Pessoa);
             // 
             // tbPesquisa
             // 
@@ -139,6 +135,10 @@
             this.tbFechar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tbFechar.Click += new System.EventHandler(this.tbFechar_Click);
             // 
+            // pessoasBindingSource
+            // 
+            this.pessoasBindingSource.DataSource = typeof(Customization.Model.Pessoa);
+            // 
             // codigoDataGridViewTextBoxColumn
             // 
             this.codigoDataGridViewTextBoxColumn.DataPropertyName = "codigo";
@@ -148,14 +148,14 @@
             this.codigoDataGridViewTextBoxColumn.ReadOnly = true;
             this.codigoDataGridViewTextBoxColumn.Width = 60;
             // 
-            // dataGridViewTextBoxColumn1
+            // nome
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "razaoSocial";
-            this.dataGridViewTextBoxColumn1.FillWeight = 250F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Nome";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 250;
+            this.nome.DataPropertyName = "nome";
+            this.nome.FillWeight = 250F;
+            this.nome.HeaderText = "Nome";
+            this.nome.Name = "nome";
+            this.nome.ReadOnly = true;
+            this.nome.Width = 250;
             // 
             // apelidoDataGridViewTextBoxColumn
             // 
@@ -206,9 +206,9 @@
             this.Load += new System.EventHandler(this.ClientePesquisa_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ClientePesquisa_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPessoas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pessoasBindingSource)).EndInit();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pessoasBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,7 +226,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn razaoSocialDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cpfCnpjDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn apelidoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn telefone1;

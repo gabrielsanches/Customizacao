@@ -18,59 +18,40 @@ namespace Customization.EntityDAO
                                                         " VALUES ";
         private string SQL_CUSTOMIZACAO_SELECT = "SELECT * FROM customizacao ";
 
-        public Customizacao Buscar(int codigo)
+        public DataTable Buscar(int codigo)
         {
-            try
-            {
-                string sql = SQL_CUSTOMIZACAO_SELECT + " WHERE idcustomizacao='" + codigo + "';";
-                var dataTable = Utility.ExecutaBD_DT(sql);
-                List<Customizacao> conexao = Utility.DataTableToCustom(dataTable);
-                if (conexao.Count > 0)
-                {
-                    return conexao.First();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new ValidacaoException(ex.Message);
-            }
-            return null;
+            string sql = SQL_CUSTOMIZACAO_SELECT + " WHERE idcustomizacao='" + codigo + "';";
+            return Utility.ExecutaBD_DT(sql);
         }
 
         public bool Remover(Customizacao customizacao)
         {
             throw new NotImplementedException();
         }
-        /*
-        public DataTable ListarTodosDT()
+        
+        public DataTable ListarTodos()
         {
             string sql = SQL_CUSTOMIZACAO_SELECT + "ORDER BY idcustomizacao;";
             return Utility.ExecutaBD_DT(sql);
         }
-
-        public List<Customizacao> ListarTodos(DataTable dataTable)
-        {
-            return Utility.DataTableToCustom(ListarTodosDT());
-        }
-        */
+        
         public void Salvar(Customizacao customizacao)
         {
             string sql = "";
-            if (Buscar(customizacao.id) != null)
+            if (Buscar(customizacao.idcustomizacao).Rows.Count>0)
             {
                 sql =  SQL_CUSTOMIZACAO_UPDATE; 
                 sql += "programador='" + customizacao.programador.codigo.Trim() + "', ";
                 sql += "cliente='" + customizacao.cliente.codigo.Trim() + "', ";
-                sql += "idtipo=" + customizacao.tipo.codigo + ", ";
+                sql += "idtipo=" + customizacao.tipo.idtipo + ", ";
                 sql += "query='" + customizacao.query + "'";
-                sql += "where idcustomizacao=" + customizacao.id + ";";
+                sql += "where idcustomizacao=" + customizacao.idcustomizacao + ";";
             } else
             {
                 sql = SQL_CUSTOMIZACAO_INSERT;
                 sql += "('" + customizacao.programador.codigo.Trim() + "', ";
                 sql += "'" + customizacao.cliente.codigo.Trim() + "', ";
-                sql += "" + customizacao.tipo.codigo + ", ";
+                sql += "" + customizacao.tipo.idtipo + ", ";
                 sql += "'" + customizacao.query.Replace("'","''") + "')";
             }
             Utility.ExecutaBD(sql);

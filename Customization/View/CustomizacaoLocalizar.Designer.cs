@@ -33,7 +33,7 @@
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.tbExportar = new System.Windows.Forms.ToolStripButton();
             this.tbFechar = new System.Windows.Forms.ToolStripButton();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvCustom = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.programadorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,7 +43,7 @@
             this.entregaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customizacaoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCustom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customizacaoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,15 +83,15 @@
             this.tbFechar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tbFechar.Click += new System.EventHandler(this.tbFechar_Click);
             // 
-            // dataGridView1
+            // dgvCustom
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvCustom.AllowUserToAddRows = false;
+            this.dgvCustom.AllowUserToDeleteRows = false;
+            this.dgvCustom.AutoGenerateColumns = false;
+            this.dgvCustom.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgvCustom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvCustom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCustom.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.programadorDataGridViewTextBoxColumn,
             this.clienteDataGridViewTextBoxColumn,
@@ -99,15 +99,15 @@
             this.inicioDataGridViewTextBoxColumn,
             this.fimDataGridViewTextBoxColumn,
             this.entregaDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.customizacaoBindingSource;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(91, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(958, 510);
-            this.dataGridView1.TabIndex = 6;
+            this.dgvCustom.DataSource = this.customizacaoBindingSource;
+            this.dgvCustom.EnableHeadersVisualStyles = false;
+            this.dgvCustom.Location = new System.Drawing.Point(91, 0);
+            this.dgvCustom.Name = "dgvCustom";
+            this.dgvCustom.ReadOnly = true;
+            this.dgvCustom.RowHeadersVisible = false;
+            this.dgvCustom.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCustom.Size = new System.Drawing.Size(958, 510);
+            this.dgvCustom.TabIndex = 6;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -181,7 +181,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1050, 548);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvCustom);
             this.Controls.Add(this.toolStrip2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
@@ -195,7 +195,7 @@
             this.Load += new System.EventHandler(this.CustomizacaoLocalizar_Load);
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCustom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customizacaoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -206,7 +206,7 @@
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton tbExportar;
         private System.Windows.Forms.ToolStripButton tbFechar;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvCustom;
         private System.Windows.Forms.BindingSource customizacaoBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn programadorDataGridViewTextBoxColumn;

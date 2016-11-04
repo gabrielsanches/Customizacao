@@ -10,14 +10,20 @@ namespace Customization.Model
     {
         public Tipo(){}
 
-        public Tipo(int codigo, string descricao)
+        public Tipo(int idtipo, string descricao)
         {
-            this.codigo = codigo;
+            this.idtipo = idtipo;
             this.descricao = descricao;
         }
 
-        public int codigo { get; set; }
+        public int idtipo { get; set; }
 
         public string descricao { get; set; }
+
+        public override string ToString()
+        {
+            return this.descricao;
+        }
     }
+    
 }

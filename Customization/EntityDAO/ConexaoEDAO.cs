@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Customization.Model;
 using Customization.Util;
+using System.Data;
 
 namespace Customization.EntityDAO
 {
@@ -17,24 +18,10 @@ namespace Customization.EntityDAO
 
         private string SQL_CONEXAO_UPDATE = "UPDATE customizacao_conexao SET";
 
-        public Conexao Buscar(string idCliente)
+        public DataTable Buscar(string idCliente)
         {
-            try
-            {
-                string sql = SQL_CONEXAO_BUSCA + " WHERE cliente='" + idCliente + "' ORDER BY cliente;";
-                var dataTable = Utility.ExecutaBD_DT(sql);
-                List<Conexao> conexao = Utility.DataTableToConn(dataTable);
-                if (conexao.Count>0)
-                {
-                    return conexao.First();
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                throw new ValidacaoException(ex.Message);
-            }
-            return null;
+            string sql = SQL_CONEXAO_BUSCA + " WHERE cliente='" + idCliente + "' ORDER BY cliente;";
+            return Utility.ExecutaBD_DT(sql);
         }
 
         public void Salvar(Conexao conexao)

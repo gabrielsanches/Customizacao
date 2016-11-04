@@ -8,9 +8,9 @@ namespace Customization.Model
 {
     public class Customizacao
     {
-        public Customizacao(int id, Pessoa programador, Pessoa cliente, Tipo tipo, string query, string inicio, string fim, string entrega)
+        public Customizacao(int idcustomizacao, Pessoa programador, Pessoa cliente, Tipo tipo, string query, string inicio, string fim, string entrega)
         {
-            this.id = id;
+            this.idcustomizacao = idcustomizacao;
             this.programador = programador;
             this.cliente = cliente;
             this.tipo = tipo;
@@ -22,9 +22,10 @@ namespace Customization.Model
 
         public Customizacao()
         {
+            this.query = "";
         }
 
-        public int id { get; set; }
+        public int idcustomizacao { get; set; }
 
         public Pessoa programador { get; set; }
 

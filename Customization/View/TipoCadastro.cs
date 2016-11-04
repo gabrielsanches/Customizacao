@@ -1,5 +1,6 @@
 ﻿using Customization.EntityDAO;
 using Customization.Model;
+using Customization.Negócio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ namespace Customization.View
 {
     public partial class TipoCadastro : Form
     {
-        public TipoEDAO eTiposDAO = new TipoEDAO();
+        private TipoNegocio tipoNegocio = new TipoNegocio();
 
         public TipoCadastro()
         {
@@ -28,14 +29,10 @@ namespace Customization.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tbDescricao.Text))
+            Tipo tipo = new Tipo();
+            tipo.descricao = tbDescricao.Text;
+            if (tipoNegocio.Salvar(tipo))
             {
-                MessageBox.Show("A descrição do tipo deve ser não nula ou vazia.");
-            }else
-            {
-                Tipo tipo = new Tipo();
-                tipo.descricao = tbDescricao.Text;
-                eTiposDAO.Salvar(tipo);
                 this.Close();
             }
         }

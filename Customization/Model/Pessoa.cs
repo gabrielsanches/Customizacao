@@ -8,12 +8,14 @@ namespace Customization.Model
 {
     public class Pessoa
     {
-        public Pessoa(string codigo, string razaoSocial,string apelido, string cpfCnpj,
-                        string conexao, string usuario, string senha, string cadastro,
-                        string atualizado, string telefone1, string telefone2, string email)
+        public Pessoa() { }
+
+        public Pessoa(string codigo, string nome,string apelido, string cpfCnpj,
+                        string conexao, string usuario, string senha, DateTime cadastro,
+                        DateTime atualizado, string telefone1, string telefone2, string email)
         {
             this.codigo = codigo;
-            this.razaoSocial = razaoSocial;
+            this.nome = nome;
             this.apelido = apelido;
             this.cpfCnpj = cpfCnpj;
             this.conexao = conexao;
@@ -28,7 +30,7 @@ namespace Customization.Model
 
         public string codigo { get; set; }
 
-        public string razaoSocial { get; set; }
+        public string nome { get; set; }
 
         public string apelido { get; set; }
 
@@ -40,9 +42,9 @@ namespace Customization.Model
 
         public string senha { get; set; }
 
-        public string cadastro { get; set; }
+        public DateTime cadastro { get; set; }
 
-        public string atualizado { get; set; }
+        public DateTime atualizado { get; set; }
 
         public string telefone1 { get; set; }
 
@@ -52,7 +54,7 @@ namespace Customization.Model
 
         public override string ToString()
         {
-            return this.razaoSocial;
+            return this.nome;
         }
     }
 }

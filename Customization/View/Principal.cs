@@ -1,5 +1,6 @@
 ﻿using Customization.EntityDAO;
 using Customization.Model;
+using Customization.Negócio;
 using Customization.Util;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Customization.View
     {
         public Customizacao customizacao { get; set; }
         public Conexao conexao { get; set; }
-        private CustomizacaoEDAO eCustomizacaoDAO = new CustomizacaoEDAO();
+        private CustomizacaoNegocio customizacaoNegocio = new CustomizacaoNegocio();
 
         public Principal()
         {
@@ -34,20 +35,7 @@ namespace Customization.View
 
         public bool SalvarCustomizacao()
         {
-            if (customizacao.cliente != null && customizacao.programador != null && customizacao.tipo != null)
-            {
-                eCustomizacaoDAO.Salvar(customizacao);
-            }
-            else
-            {
-                MessageBox.Show("Os campos cliente, programador e tipo devem ser preenchidos.",
-                                "Campos Obrigatórios",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Exclamation,
-                                MessageBoxDefaultButton.Button1);
-                return false;
-            }
-            return true;
+            return customizacaoNegocio.Salvar(customizacao);
         }
 
         public void SalvarQuery()
